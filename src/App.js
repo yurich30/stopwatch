@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { render } from "react-dom";
+
 
  
 export default function App() {
-  return (
-    <div>
-      
-    </div>
-  );
+
+	const [time, setTime] = useState(0)
+
+	return (
+		<div>
+			{time}
+		</div>
+	);
 }
  
 render(<App />, document.getElementById("root"));
