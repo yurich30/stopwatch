@@ -38,6 +38,7 @@ export default function App() {
 
 	const reset = () => {
 		setTime(0)
+		setAct('start')
 	}
 
 	return (
