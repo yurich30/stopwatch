@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { render } from "react-dom";
 import { interval, Subject } from "rxjs";
+import { takeUntil } from 'rxjs/operators'
 
 export default function App() {
 
@@ -10,21 +11,32 @@ export default function App() {
 	useEffect(() => {
 		const stopwatch$ = new Subject();
 		interval(1000)
-		  .subscribe(() => {
+			.pipe(takeUntil(stopwatch$))
+			.subscribe(() => {
 			if (act === 'start'){
 				setTime(val => val + 1000);
 			}
-		  });
+			});
+			return () => {
+			stopwatch$.next();
+			stopwatch$.complete();
+			};
 	},[act])
 
 	const start = () => {
-		setAct('start')
+		setAct('start');
+	}
+
+	const stop = () => {
+		setAct('stop');
+		setTime(0);
 	}
 
 	return (
 		<div>
 			<h1>{ new Date(time).toISOString() }</h1>
-			<button onClick={() => start()}>Start</button>
+			<button onClick={ () => start() }>Start</button>
+			<button onClick={ () => stop() }>Stop</button>
 		</div>
 	);
 }
