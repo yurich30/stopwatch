@@ -36,12 +36,17 @@ export default function App() {
 		setAct('wait')
 	}
 
+	const reset = () => {
+		setTime(0)
+	}
+
 	return (
 		<div>
 			<h1>{ new Date(time).toISOString() }</h1>
 			<button onClick={ () => start() }>Start</button>
 			<button onClick={ () => stop() }>Stop</button>
 			<button onDoubleClick={ () => wait() }>Wait</button>
+			<button onClick={ () => reset() }>Reset</button>
 		</div>
 	);
 }
