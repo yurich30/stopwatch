@@ -32,11 +32,16 @@ export default function App() {
 		setTime(0);
 	}
 
+	const wait = () => {
+		setAct('wait')
+	}
+
 	return (
 		<div>
 			<h1>{ new Date(time).toISOString() }</h1>
 			<button onClick={ () => start() }>Start</button>
 			<button onClick={ () => stop() }>Stop</button>
+			<button onDoubleClick={ () => wait() }>Wait</button>
 		</div>
 	);
 }
