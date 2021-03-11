@@ -42,7 +42,7 @@ export default function App() {
 
 	return (
 		<div>
-			<h1>{ new Date(time).toISOString() }</h1>
+			<h1>{ new Date(time).toISOString().slice(11, 19) }</h1>
 			<button onClick={ () => start() }>Start</button>
 			<button onClick={ () => stop() }>Stop</button>
 			<button onDoubleClick={ () => wait() }>Wait</button>
